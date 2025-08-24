@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="save-btm">SIZE</button>
+
+    <div id="big-div">
+
+    <div id="container">
+
+    </div>
+    </div>
+        <script>
+        
+
+        const container = document.getElementById('container');
+        const sizeBtn = document.querySelector('.save-btm'); 
+
+        let dimentons = 16;
+
+        function addHoverEffect() {
+            const pixels = document.getElementsByClassName('child-div');
+            Array.from(pixels).forEach(pixel => {
+                pixel.addEventListener("mouseover", function() {
+                    pixel.style.backgroundColor = "black";
+                });
+            });
+        }
+        function createGrid(dimentons){
+            container.innerHTML = '';
+            
+            const childWidth = 100 / dimentons;
+            const childHeight = 100 / dimentons;
+
+            for(let i=0; i<dimentons*dimentons;i++){
+                const newDiv =document.createElement("div");
+                newDiv.className = "child-div";
+                newDiv.style.width = `${childWidth}%`;
+                newDiv.style.height = `${childHeight}%`;
+                container.appendChild(newDiv);
+            };
+            addHoverEffect();
+
+        }
+
+         sizeBtn.addEventListener("click", ()=>{
+            let size = prompt("What will the canvas dimention be?");
+            size = parseInt(size);
+                    if(size <= 100 && size >= 1){
+            dimentons = size;
+            createGrid(dimentons)
+        };
+        });
+
+        createGrid(dimentons);
+    </script>
+</body>
+</html>
