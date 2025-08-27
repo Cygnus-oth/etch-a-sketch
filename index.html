@@ -8,6 +8,8 @@
 </head>
 <body>
     <button class="save-btm">SIZE</button>
+    <button class="rainbow-btn">RAINBOW</button>
+    <button class="black-btn">BLACK</button>
 
     <div id="big-div">
 
@@ -20,14 +22,42 @@
 
         const container = document.getElementById('container');
         const sizeBtn = document.querySelector('.save-btm'); 
-
+        const blackBtn = document.querySelector('.black-btn')
+        let curentColor = "black";
         let dimentons = 16;
+        const rainbowBtn = document.querySelector('.rainbow-btn');
+
+
+
+
+        function rainbow() 
+            {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+            }
+
+        blackBtn.addEventListener("click",()=>{
+            curentColor = "black"
+        })
+        rainbowBtn.addEventListener("click", () => {
+            curentColor = "rainbow";
+        });
+
+
+
 
         function addHoverEffect() {
             const pixels = document.getElementsByClassName('child-div');
             Array.from(pixels).forEach(pixel => {
-                pixel.addEventListener("mouseover", function() {
-                    pixel.style.backgroundColor = "black";
+                pixel.addEventListener("click", function() {
+                    if(curentColor === "rainbow"){
+                        pixel.style.backgroundColor = rainbow();
+                    }
+                    else{
+                    pixel.style.backgroundColor = curentColor;
+                    }
                 });
             });
         }
